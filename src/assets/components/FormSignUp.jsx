@@ -24,6 +24,7 @@ function FormSignUp() {
   // State variables to manage form interactions and submission
   const [showPassword, setShowPassword] = useState(false);
   const [privacyChecked, setPrivacyChecked] = useState(false);
+  const [personalizedEmails, setPersonalizedEmails] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -44,19 +45,25 @@ function FormSignUp() {
     event.preventDefault();
   };
 
-  const handlePrivacyChange = (event) => {
-    /* console.log(event.target.checked); */
-    setPrivacyChecked(event.target.checked);
-  };
-
   // Function to handle form submission
   const handleSubmitForm = handleSubmit((data) => {
     console.log(data);
 
     setFormSubmitted(true);
     reset();
+    setPersonalizedEmails(false);
+    setPrivacyChecked(false);
     setOpenDialog(true);
   });
+
+  const handlePrivacyChange = (event) => {
+    /* console.log(event.target.checked); */
+    setPrivacyChecked(event.target.checked);
+  };
+
+  const handlePersonalizedEmailsChange = (event) => {
+    setPersonalizedEmails(event.target.checked);
+  };
 
   // Effect hook to control dialog visibility based on form submission
   useEffect(() => {
@@ -239,7 +246,13 @@ function FormSignUp() {
       </FormControl>
       <FormGroup style={{ margin: "15px 0" }}>
         <FormControlLabel
-          control={<Switch color="warning" />}
+          control={
+            <Switch
+              checked={personalizedEmails}
+              onChange={handlePersonalizedEmailsChange}
+              color="warning"
+            />
+          }
           label="I want to receive personalized commercial communications by email."
           labelPlacement="end"
           {...register("personalizedEmails")}
