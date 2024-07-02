@@ -25,7 +25,7 @@ This project focuses on demonstrating form validation using React Hook Form alon
 ## Screenshots
 
 <div align="center" >
-  <img src="public/MacBook Pro-1719933600489.jpeg" width="80%" />
+  <img src="public/MacBook Pro-1719938207423.jpeg" width="80%" />
 </div>
 
 ## Additional Information
